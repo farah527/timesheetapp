@@ -187,8 +187,10 @@ export class TimesheetDetailsComponent implements OnInit {
           lastDate.setDate(firstDay.getDate() - 1 );
           this.timesheettilldate = lastDate;
           var firstDayofLM = new Date(lastDate.getFullYear(), lastDate.getMonth(), 1);
-          var fd =new Date(lastDate);
+        var fd =new Date(lastDate);
           fd.setDate(firstDayofLM.getDate() + 15);
+          // setTimeout(function(){this.timesheetDate = firstDate; }, 2000);
+          // firstDate.setDate(firstDate.getDate() - 16 );
           this.timesheetDate = fd;
 
           this.getdateList(this.timesheetDate, this.timesheettilldate);
@@ -210,12 +212,12 @@ export class TimesheetDetailsComponent implements OnInit {
     const start = new Date(startdate), end = new Date(enddate);
     const range = moment.range(moment(start), moment(end));
     var datearr= Array.from(range.by('day'));
-    var mon=  datearr[0]._d.getMonth();
+    var mon=  moment(datearr[0]).month();
     this.month = this.Months[mon];
     console.log(datearr);
     for(var i=0; i< datearr.length; i++){
-     var day= datearr[i]._d.getDay();
-     var date=  datearr[i]._d.getDate();
+     var day= moment(datearr[i]).day();
+     var date=  moment(datearr[i]).date();
     //  console.log(this.weekday[day]+' '+date);
       this.dateList.push(this.weekday[day]+' '+date);
     }

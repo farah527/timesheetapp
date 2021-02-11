@@ -2,6 +2,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from "@angular/core";
 import { SwaggerComponent } from 'src/app/swagger/swagger.component';
+import { TimesheetComponent } from 'src/app/extended/timesheet/timesheet.component';
+import { TimesheetDetailsComponent } from './extended/timesheet-details/timesheet-details.component';
 import { ErrorPageComponent  } from './error-page/error-page.component';
 import { AuthGuard } from './core/auth-guard';
 
@@ -11,6 +13,8 @@ const routes: Routes = [
 		loadChildren: './extended/core/core.module#CoreExtendedModule'
 	},
   	{ path: "swagger-ui", component: SwaggerComponent , canActivate: [ AuthGuard ] },
+  	{ path: "timesheet", component: TimesheetComponent , canActivate: [ AuthGuard ] },
+  	{ path: "timesheet-details", component: TimesheetDetailsComponent , canActivate: [ AuthGuard ] },
 	{
 		path: '',
 		loadChildren: './extended/admin/admin.module#AdminExtendedModule'
@@ -60,7 +64,7 @@ const routes: Routes = [
 		canActivate: [AuthGuard]
 	},
 	{ path: '**', component:ErrorPageComponent},
-	
+
 ];
 
 export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);

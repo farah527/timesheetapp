@@ -1,0 +1,166 @@
+<div class="list-container" appVirtualScroll>
+	<div class="top-breadcrumb">
+		<h1 class="template-title">{{title}}</h1>
+		<div class="fc-row">
+			<div class="fc-col-md-8">
+				<ul class="breadcrumb">
+					<li><a [routerLink]="['/dashboard']"><i class="material-icons">
+								home
+							</i> &nbsp;Dashboard</a></li>
+					<li><a>{{title}}</a></li>
+				</ul>
+			</div>
+			<div class="fc-col-md-4 fc-text-right">
+				<!-- <button name="add" mat-raised-button color="primary" (click)="addNew()">
+					<mat-icon>add_circle_outline</mat-icon>
+					&nbsp; Add
+				</button> -->
+      </div>
+
+		</div>
+	</div>
+	<mat-card>
+    <div class="datepaginator">
+      <div fxFlex=73>
+
+      </div>
+
+      <div fxFlex=27 >
+        <div >
+
+          <button mat-raised-button color="primary" (click)="backDate()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+
+          <span class="datepickerdiv"><span>Choose Date</span>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </span>
+
+          <button mat-raised-button color="primary" (click)="nextDate()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+        </div>
+        <div class="selectedDate">
+          <b>{{timesheetDate | date: "fullDate"}}</b>
+        </div>
+        <div class="invisible">
+          <mat-form-field >
+            <input matInput name="DaytimeSheet" [(ngModel)]="timesheetDate" [matDatepicker]="picker"/>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+            <th></th>
+            <th>Cutomer</th>
+            <th>Project</th>
+            <th>Task</th>
+            <th>Hours</th>
+            <th>Notes</th>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let dsheet of daysheet; let idx = index">
+            <tr *ngIf="!dsheet.timeoff">
+              <td class="col-1"><mat-icon class="cursor" (click)="deleteRow(idx)">delete</mat-icon></td>
+              <td class="col-2">
+                <mat-form-field class="customers">
+                  <mat-select name="customer" placeholder="Select a customer.." [(ngModel)]="dsheet.customer">
+                      <mat-option *ngFor="let cust of customers" [value]="cust">{{cust}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td class="col-3">
+                <mat-form-field class="projects">
+                  <mat-select placeholder="Select a project.." name="project" [(ngModel)]="dsheet.project">
+                      <mat-option *ngFor="let proj of projects" [value]="proj">{{proj}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td class="col-4">
+                <mat-form-field class="tasks">
+                  <mat-select name="task" [(ngModel)]="dsheet.task">
+                      <mat-option *ngFor="let task of tasks" [value]="task">{{task}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td class="col-1">
+                <mat-form-field class="hours">
+                  <input name="hours" (focusout)="totalDayHours($event)"  [(ngModel)]="dsheet.hours" matInput placeholder="">
+                </mat-form-field>
+              </td>
+              <td class="col-5">
+                <mat-icon class="cursor" (click)="addNotes(idx)" *ngIf="notesindex !== idx">description</mat-icon>
+                <textarea *ngIf="notesindex == idx" [(ngModel)]="dsheet.notes">{{dsheet.notes}}
+                </textarea>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="addRow">
+      <button name="add" mat-raised-button color="primary" (click)="addCustomer()">
+        <mat-icon>add_circle_outline</mat-icon>
+        &nbsp; Add Row
+      </button>
+    </div>
+
+
+    <div class="timeoffTable">
+      <table>
+        <thead>
+            <th></th>
+            <th>Time Off</th>
+            <th>Hours</th>
+            <th>Notes</th>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let dsheet of daysheet; let idx = index">
+            <tr *ngIf="dsheet.timeoff">
+              <td class="col-1"><mat-icon class="cursor" (click)="deleteRow(idx)">delete</mat-icon></td>
+              <td class="col-6">
+                <mat-form-field class="timeoff">
+                  <mat-select placeholder="Select a leave type.." name="timeoff" [(ngModel)]="dsheet.timeoff">
+                      <mat-option  *ngFor="let tot of timeOffType" [value]="tot">{{tot}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td class="col-1">
+                <mat-form-field class="hours">
+                  <input name="hours" (focusout)="totalDayHours($event)" [(ngModel)]="dsheet.hours" matInput placeholder="">
+                </mat-form-field>
+              </td>
+              <td class="col-5">
+                <mat-icon class="cursor" (click)="addNotes(idx)" *ngIf="notesindex !== idx">description</mat-icon>
+                  <textarea *ngIf="notesindex == idx" [(ngModel)]="dsheet.notes">{{dsheet.notes}}
+
+                  </textarea>
+                <!-- </mat-form-field> -->
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="addRow">
+      <button name="add" mat-raised-button color="primary" (click)="addTimeOff()">
+        <mat-icon>add_circle_outline</mat-icon>
+        &nbsp; Add Row
+      </button>
+    </div>
+    <div>
+
+    <div class="totalhours"><b>Total Hours: </b> {{totalhours}}</div>
+    <div class="savetimesheet">
+      <button (click)="save()" mat-raised-button color="primary" (click)="addTimeOff()">
+        Save
+      </button>
+    </div>
+    </div>
+		<section class="small-spinner-container" *ngIf="isLoadingResults">
+			<mat-spinner></mat-spinner>
+		</section>
+	</mat-card>
+</div>

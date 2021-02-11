@@ -8,6 +8,8 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SwaggerComponent } from './swagger/swagger.component';
+import { TimesheetComponent } from './extended/timesheet/timesheet.component';
+import { TimesheetDetailsComponent } from './extended/timesheet-details/timesheet-details.component';
 import { ErrorPageComponent  } from './error-page/error-page.component';
 /** core components and filters for authorization and authentication **/
 
@@ -26,7 +28,7 @@ import { SharedModule } from 'src/app/common/shared';
 // import { CoreModule } from './core/core.module';
 import { CoreExtendedModule } from './extended/core/core.module';
 import { GeneralComponentsExtendedModule } from './common/general-components/extended/general-extended.module';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -35,13 +37,17 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
 	declarations: [
 		ErrorPageComponent,
-		SwaggerComponent,
+    SwaggerComponent,
+    TimesheetComponent,
+    TimesheetDetailsComponent,
 		AppComponent,
   ],
   imports: [
     BrowserModule,
     routingModule,
     HttpClientModule,
+    FlexLayoutModule,
+
     BrowserAnimationsModule,
     // CoreModule,
     CoreExtendedModule,

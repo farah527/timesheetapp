@@ -40,7 +40,7 @@
 
     <mat-nav-list class="nav-list">
       <a mat-list-item class="sidenav-list-item" routerLinkActive="active"  [routerLink]="['/dashboard']"><i class="material-icons">home</i> &nbsp;{{'MainNav.Home' | translate }}</a>
-      
+
 
       <mat-expansion-panel class="expansion-panel">
         <mat-expansion-panel-header class="subnav-header">
@@ -59,7 +59,7 @@
 
         </mat-nav-list>
       </mat-expansion-panel>
-	 
+
 
 			<mat-expansion-panel class="expansion-panel" *ngIf="permissions['showTools']">
         <mat-expansion-panel-header class="subnav-header">
@@ -69,10 +69,10 @@
         </mat-expansion-panel-header>
 
         <mat-nav-list class="subnav">
-          
+
         </mat-nav-list>
       </mat-expansion-panel>
-      
+
       <mat-expansion-panel class="expansion-panel">
         <mat-expansion-panel-header class="subnav-header">
           <i class="material-icons">
@@ -98,11 +98,18 @@
         <i class="material-icons">
           settings
         </i> &nbsp;{{'MainNav.API' | translate }}</a>
+        <a mat-list-item class="sidenav-list-item" routerLink="timesheet">
+          <i class="material-icons">
+            settings
+          </i> &nbsp; Timesheet</a>
+        <a mat-list-item class="sidenav-list-item" routerLink="timesheet-details">
+          <i class="material-icons">
+            settings
+          </i> &nbsp; Timesheet Details</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content #navContent class="fc-sidenav-content">
 
-    <!-- main content container start  -->
     <router-outlet></router-outlet>
     <!-- main content container Ends -->
   </mat-sidenav-content>

@@ -1,0 +1,108 @@
+<div class="list-container" appVirtualScroll>
+	<div class="top-breadcrumb">
+		<h1 class="template-title">{{title}}</h1>
+		<div class="fc-row">
+			<div class="fc-col-md-8">
+				<ul class="breadcrumb">
+					<li><a [routerLink]="['/dashboard']"><i class="material-icons">
+								home
+							</i> &nbsp;Dashboard</a></li>
+					<li><a>{{title}}</a></li>
+				</ul>
+			</div>
+			<div class="fc-col-md-4 fc-text-right">
+				<!-- <button name="add" mat-raised-button color="primary" (click)="addNew()">
+					<mat-icon>add_circle_outline</mat-icon>
+					&nbsp; Add
+				</button> -->
+      </div>
+
+		</div>
+	</div>
+	<mat-card>
+    <div>
+      <div fxFlex class="customerInfo">
+        <div fxFlex=37>
+          <h3>Mushammad Usman</h3>
+        </div>
+        <div fxFlex=30>
+        </div>
+        <div fxFlex=25 class="datepaginator" id="paginator">
+
+          <div >
+            <button mat-raised-button color="primary" (click)="timesheet('back')"><mat-icon>keyboard_arrow_left</mat-icon></button>
+
+            <span class="datepickerdiv"><span>Choose Date</span>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </span>
+
+            <button mat-raised-button color="primary" (click)="timesheet('next')"><mat-icon>keyboard_arrow_right</mat-icon></button>
+          </div>
+          <div class="selectedDate">
+            <b>{{timesheetDate | date: "longDate"}}-{{timesheettilldate | date:"longDate"}}</b>
+          </div>
+          <div class="invisible">
+            <mat-form-field >
+              <input matInput name="DaytimeSheet" [(ngModel)]="timesheetDate" [matDatepicker]="picker"/>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex=8 >
+          <!-- <div class="datepaginator">
+            <button class="timesheetbutton" mat-raised-button color="primary" >Submit</button>
+          </div> -->
+          <div class="datepaginator">
+            <button mat-raised-button color="primary" >Approve</button>
+            <button class="timesheetbutton" mat-raised-button color="accent" >Reject</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timesheetdetails">
+      <div class="sheetmonth"><b>{{month}}</b></div>
+      <table>
+        <thead>
+            <th></th>
+            <ng-container *ngFor="let dd of dateList">
+              <th>{{dd}}</th>
+            </ng-container>
+            <th>Total</th>
+
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let customer of customerProjects | keyvalue">
+            <tr>
+              <td><span><mat-icon>arrow drop down icon</mat-icon></span>{{customer.key}}</td>
+              <ng-container *ngFor="let dd of dateList">
+                <td class="col-2"> </td>
+              </ng-container>
+              <td>total</td>
+            </tr>
+          </ng-container>
+            <tr>
+              <td class="col-1">task name project</td>
+              <ng-container *ngFor="let dd of dateList">
+                <td class="col-2"> </td>
+              </ng-container>
+              <td>total</td>
+            </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+    <div class="notes">
+      <div class="notesheader">Notes</div>
+      <textarea class="notes" [(ngModel)]="notes">{{notes}}
+      </textarea>
+    </div>
+
+		<section class="small-spinner-container" *ngIf="isLoadingResults">
+			<mat-spinner></mat-spinner>
+		</section>
+	</mat-card>
+</div>
+

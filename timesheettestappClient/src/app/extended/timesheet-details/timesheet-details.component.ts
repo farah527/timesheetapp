@@ -134,7 +134,6 @@ export class TimesheetDetailsComponent implements OnInit {
 
         console.log('firstdate of month',firstDay);
         console.log('lastdate of month',lastDay);
-        // firstDate.setDate(firstDay.getDate() + 15);
         this.timesheetDate = firstDay;
         lastDate.setDate(new Date(firstDay).getDate() + 14);
         this.timesheettilldate = lastDate;
@@ -162,7 +161,6 @@ export class TimesheetDetailsComponent implements OnInit {
         console.log('lastdate of month',lastDay);
         firstDate.setDate(firstDay.getDate() + 15);
         this.timesheetDate = firstDate;
-        // lastDate.setDate(new Date(firstDay).getDate()  14);
         this.timesheettilldate = lastDay;
         this.getdateList(this.timesheetDate, lastDay);
       } else {
@@ -174,8 +172,6 @@ export class TimesheetDetailsComponent implements OnInit {
         firstDate.setDate(new Date(lastDay).getDate() + 1);
         this.timesheetDate = firstDate;
         console.log(this.timesheetDate);
-        // var newtimedate = new Date(this.timesheetDate);
-        // var lastDay = new Date(this.timesheetDate.getFullYear(), this.timesheetDate.getMonth(), 1);
         lastDate.setDate(new Date(lastDay).getDate() + 15);
         this.timesheettilldate = lastDate;
         this.getdateList(this.timesheetDate, this.timesheettilldate);
@@ -190,13 +186,9 @@ export class TimesheetDetailsComponent implements OnInit {
           console.log('lastdate of month',lastDay);
           lastDate.setDate(firstDay.getDate() - 1 );
           this.timesheettilldate = lastDate;
-        //   var newtimetilldate = new Date(this.timesheettilldate);
           var firstDayofLM = new Date(lastDate.getFullYear(), lastDate.getMonth(), 1);
-        // console.log(firstDayofLM);
-        var fd =new Date(lastDate);
+          var fd =new Date(lastDate);
           fd.setDate(firstDayofLM.getDate() + 15);
-          // setTimeout(function(){this.timesheetDate = firstDate; }, 2000);
-          // firstDate.setDate(firstDate.getDate() - 16 );
           this.timesheetDate = fd;
 
           this.getdateList(this.timesheetDate, this.timesheettilldate);
@@ -210,22 +202,6 @@ export class TimesheetDetailsComponent implements OnInit {
           this.getdateList(this.timesheetDate, this.timesheettilldate);
         }
     }
-    // if (this.timesheettilldate && this.timesheetDate) {
-    //   var ddate = new Date(this.timesheettilldate);
-    //   for(var i = 0; new Date(ddate).getTime() <= new Date(this.timesheettilldate).getTime(); i++) {
-    //   // for(var i = 0; ddate < this.timesheettilldate; i++) {
-    //     var d =new Date(this.timesheetDate);
-    //     this.dateList.push(d);
-    //     d.setDate(ddate.getDate() + 1);
-    //   }
-
-    //   console.log( this.dateList);
-    // }
-
-    // var nextDay = new Date( this.timesheetDate);
-    // nextDay.setDate(day.getDate() + 1);
-    // console.log(nextDay);
-    // this.timesheetDate = nextDay;
   }
 
  getdateList(startdate, enddate) {

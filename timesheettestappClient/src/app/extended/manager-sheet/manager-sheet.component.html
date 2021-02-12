@@ -19,9 +19,8 @@
     <div>
       <div fxFlex class="customerInfo">
         <div fxFlex=37>
-          <h3>Mushammad Usman</h3>
         </div>
-        <div fxFlex=30>
+        <div fxFlex=38>
         </div>
         <div fxFlex=25 class="datepaginator" id="paginator">
 
@@ -44,56 +43,44 @@
             </mat-form-field>
           </div>
         </div>
-        <div fxFlex=8 >
-          <div *ngIf="!employeeId" class="datepaginator">
-            <button class="timesheetbutton" mat-raised-button color="primary" >Submit</button>
-          </div>
-          <div *ngIf="employeeId" class="datepaginator">
-            <button mat-raised-button color="primary" >Approve</button>
-            <button class="timesheetbutton" mat-raised-button color="accent" >Reject</button>
-          </div>
-        </div>
+
       </div>
     </div>
 
     <div class="timesheetdetails">
-      <div class="sheetmonth"><b>{{month}}</b></div>
       <table>
         <thead>
-            <th></th>
-            <ng-container *ngFor="let dd of dateList">
-              <th>{{dd}}</th>
-            </ng-container>
-            <th>Total</th>
+            <th>
+              <mat-checkbox color="primary" (change)="selectall()" [value]="selectAll" [(ngModel)]="selectAll" name="slectAll">
+              </mat-checkbox>
+            </th>
+            <th>Employees</th>
+            <th>Total Hours</th>
+            <th>Actions</th>
 
         </thead>
 
         <tbody>
-          <ng-container *ngFor="let customer of customerProjects | keyvalue">
-            <tr>
-              <td><span><mat-icon>arrow drop down icon</mat-icon></span>{{customer.key}}</td>
-              <ng-container *ngFor="let dd of dateList">
-                <td class="col-2"> </td>
-              </ng-container>
-              <td>total</td>
-            </tr>
-          </ng-container>
-            <tr>
-              <td class="col-1">task name project</td>
-              <ng-container *ngFor="let dd of dateList">
-                <td class="col-2"> </td>
-              </ng-container>
-              <td>total</td>
-            </tr>
-
+          <tr *ngFor="let emp of employees">
+            <td>
+              <mat-checkbox value="emp.selected" color="primary" [(ngModel)]="emp.selected">
+              </mat-checkbox>
+            </td>
+            <td><a href="/timesheet-details?employeeId={{emp.employeeId}}&timesheetDate={{emp.timesheetDate}}">{{emp.employee}}</a></td>
+            <td>{{emp.totalhours}}</td>
+            <td>
+              <mat-icon class="actionbtn cursor" color="primary" (click)="accept()"
+              matTooltip="Accept" matTooltipPosition="right" matTooltipClass="orphen-tooltip" >
+              check_circle</mat-icon>
+              <mat-icon class="actionbtn cursor" color="accent" (click)="reject()"
+              matTooltip="Reject" matTooltipPosition="right" matTooltipClass="orphen-tooltip" >cancel</mat-icon>
+              <!-- <button mat-raised-button color="primary" >Approve</button>
+              <button class="timesheetbutton" mat-raised-button color="accent" >Reject</button> -->
+            </td>
+          </tr>
 
         </tbody>
       </table>
-    </div>
-    <div class="notes">
-      <div class="notesheader">Notes</div>
-      <textarea class="notes" [(ngModel)]="notes">{{notes}}
-      </textarea>
     </div>
 
 		<section class="small-spinner-container" *ngIf="isLoadingResults">

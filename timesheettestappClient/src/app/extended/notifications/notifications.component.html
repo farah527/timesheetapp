@@ -1,0 +1,59 @@
+<div class="list-container" appVirtualScroll>
+	<div class="top-breadcrumb">
+		<h1 class="template-title">{{title}}</h1>
+		<div class="fc-row">
+			<div class="fc-col-md-8">
+				<ul class="breadcrumb">
+					<li><a [routerLink]="['/dashboard']"><i class="material-icons">
+								home
+							</i> &nbsp;Dashboard</a></li>
+					<li><a>{{title}}</a></li>
+				</ul>
+			</div>
+			<div class="fc-col-md-4 fc-text-right">
+      </div>
+
+		</div>
+	</div>
+	<mat-card>
+    <div>
+      <h3>Time Tracking Reminders</h3>
+      <div class="notifiyChart" fxLayout="column" fxLayoutAlign="center center">
+        <div fxFlex>
+          <div>Email me if I havn't tracked any time by</div>
+            <div fxFlex=37 class="time-container">
+              <!-- <div class="time-container mat-form-field" > -->
+                <!-- <mat-label class="lable-inline">Time Picker</mat-label> -->
+                <ngx-timepicker-field #timePicker name='timepicker'>
+                </ngx-timepicker-field>
+              <!-- </div> -->
+            </div>
+            <div fxFlex>on the selected days</div>
+        </div>
+
+        <div class="notify" fxFlex>
+          <ng-container *ngFor="let day of weekday">
+            <div fxFlex (click)="selectDay(day)"  class="notifyday">{{day}}</div>
+          </ng-container>
+          <!-- <div fxFlex (click)="select(d)" [ngStyle]="{'background-color': bgColor}" class="notifyday">Mon</div>
+          <div fxFlex class="notifyday">Tue</div>
+          <div fxFlex class="notifyday">Wed</div>
+          <div fxFlex class="notifyday">Thu</div>
+          <div fxFlex class="notifyday">Fri</div>
+          <div fxFlex class="notifyday">Sat</div>
+          <div fxFlex class="notifyday">Sun</div> -->
+        </div>
+
+        <div fxFlex class="action">
+          <button class="actionbtn" mat-raised-button color="primary" (click)="update()">Update Notification</button>
+          <button class="actionbtn" mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+
+        </div>
+
+      </div>
+    </div>
+		<section class="small-spinner-container" *ngIf="isLoadingResults">
+			<mat-spinner></mat-spinner>
+		</section>
+	</mat-card>
+</div>

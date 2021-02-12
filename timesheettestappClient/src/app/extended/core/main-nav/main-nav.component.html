@@ -25,6 +25,9 @@
       <button mat-menu-item routerLink="/update-profile">
         <mat-icon class="menu-item">person</mat-icon>
         &nbsp; Update Profile</button>
+      <button mat-menu-item routerLink="/notifications">
+        <mat-icon class="menu-item">notifications</mat-icon>
+        &nbsp; Notifications</button>
       <button mat-menu-item (click)="logout()">
         <mat-icon color="warn" class="menu-item">power_settings_new</mat-icon>
         &nbsp; Logout
@@ -106,6 +109,10 @@
           <i class="material-icons">
             settings
           </i> &nbsp; Timesheet Details</a>
+        <a mat-list-item class="sidenav-list-item" routerLink="managersheet">
+          <i class="material-icons">
+            settings
+          </i> &nbsp; Manager Sheet</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content #navContent class="fc-sidenav-content">

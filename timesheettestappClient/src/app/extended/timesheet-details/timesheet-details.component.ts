@@ -28,6 +28,7 @@ export class TimesheetDetailsComponent implements OnInit {
   customerProjects = [];
   customers = [];
   projects = [];
+  employeeId: any;
 
   timesheetDetails = [
     {
@@ -96,7 +97,17 @@ export class TimesheetDetailsComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-    this.timesheetDate = new Date();
+
+
+
+    this.employeeId = this.route.snapshot.queryParamMap.get('employeeId');
+    console.log(this.employeeId);
+    if (this.employeeId) {
+      this.timesheetDate = new Date(this.route.snapshot.queryParamMap.get('timesheetDate'));
+    } else {
+      this.timesheetDate = new Date();
+    }
+
     this.timesheet('current');
 
     this.projects = this.timesheetDetails.reduce(function (r, timesheetobj) {

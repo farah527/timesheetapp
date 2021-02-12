@@ -2,6 +2,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from "@angular/core";
 import { SwaggerComponent } from 'src/app/swagger/swagger.component';
+import { NotificationsComponent } from 'src/app/extended/notifications/notifications.component';
+import { ManagerSheetComponent } from 'src/app/extended/manager-sheet/manager-sheet.component';
 import { TimesheetComponent } from 'src/app/extended/timesheet/timesheet.component';
 import { TimesheetDetailsComponent } from './extended/timesheet-details/timesheet-details.component';
 import { ErrorPageComponent  } from './error-page/error-page.component';
@@ -13,6 +15,8 @@ const routes: Routes = [
 		loadChildren: './extended/core/core.module#CoreExtendedModule'
 	},
   	{ path: "swagger-ui", component: SwaggerComponent , canActivate: [ AuthGuard ] },
+  	{ path: "notifications", component: NotificationsComponent , canActivate: [ AuthGuard ] },
+  	{ path: "managersheet", component: ManagerSheetComponent , canActivate: [ AuthGuard ] },
   	{ path: "timesheet", component: TimesheetComponent , canActivate: [ AuthGuard ] },
   	{ path: "timesheet-details", component: TimesheetDetailsComponent , canActivate: [ AuthGuard ] },
 	{

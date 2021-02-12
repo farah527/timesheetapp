@@ -8,6 +8,8 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SwaggerComponent } from './swagger/swagger.component';
+import { NotificationsComponent } from './extended/notifications/notifications.component';
+import { ManagerSheetComponent } from './extended/manager-sheet/manager-sheet.component';
 import { TimesheetComponent } from './extended/timesheet/timesheet.component';
 import { TimesheetDetailsComponent } from './extended/timesheet-details/timesheet-details.component';
 import { ErrorPageComponent  } from './error-page/error-page.component';
@@ -38,7 +40,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 	declarations: [
 		ErrorPageComponent,
     SwaggerComponent,
+    ManagerSheetComponent,
     TimesheetComponent,
+    NotificationsComponent,
     TimesheetDetailsComponent,
 		AppComponent,
   ],

@@ -39,7 +39,7 @@
           </div>
           <div class="invisible">
             <mat-form-field >
-              <input matInput name="DaytimeSheet" [(ngModel)]="timesheetDate" [matDatepicker]="picker"/>
+              <input matInput name="DaytimeSheet" (dateInput)="dateChanged($event)" [(ngModel)]="timesheetDate" [matDatepicker]="picker"/>
             </mat-form-field>
           </div>
         </div>

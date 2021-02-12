@@ -30,7 +30,7 @@
 
             <span class="datepickerdiv"><span>Choose Date</span>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker #picker ></mat-datepicker>
             </span>
 
             <button mat-raised-button color="primary" (click)="timesheet('next')"><mat-icon>keyboard_arrow_right</mat-icon></button>
@@ -40,7 +40,7 @@
           </div>
           <div class="invisible">
             <mat-form-field >
-              <input matInput name="DaytimeSheet" [(ngModel)]="timesheetDate" [matDatepicker]="picker"/>
+              <input matInput name="DaytimeSheet" (dateInput)="dateChanged($event)"  [(ngModel)]="timesheetDate" [matDatepicker]="picker"/>
             </mat-form-field>
           </div>
         </div>

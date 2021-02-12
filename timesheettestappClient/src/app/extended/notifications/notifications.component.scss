@@ -17,6 +17,11 @@
   margin:10px
 }
 
+.selected {
+  background-color: #9de3e6a1;
+  color:black;
+}
+
 .notifyday {
   // margin-top: 10px;
   margin-right: 20px;
@@ -26,3 +31,5 @@
   color: #aca5a5;
   border: 1px solid #aca5a5;
 }
+
+.cursor { cursor: pointer; }

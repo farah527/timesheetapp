@@ -22,8 +22,7 @@ export class ManagerSheetComponent implements OnInit {
   timesheetDate: any;
   timesheetday;
   timesheettilldate;
-  employees: any = [
-    {
+  employees: any = [{
       employeeId:"emp1",
       employee:"Muhammad",
       totalhours:"80",
@@ -34,8 +33,7 @@ export class ManagerSheetComponent implements OnInit {
       employee:"Usman",
       totalhours:"80",
       timesheetDate: new Date()
-    }
-  ];
+    }];
   selectAll = false;
 
  constructor(
@@ -65,6 +63,10 @@ export class ManagerSheetComponent implements OnInit {
 
   reject() {}
 
+  dateChanged(event) {
+    console.log('change');
+    this.timesheet('current');
+  }
 
   timesheet(state) {
     var date = new Date(this.timesheetDate);

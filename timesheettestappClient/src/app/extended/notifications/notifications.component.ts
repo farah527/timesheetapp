@@ -12,9 +12,10 @@ export class NotificationsComponent implements OnInit {
   parentUrl: string = 'notification';
 
   isLoadingResults = false;
-  weekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'];
-  bgColor: any;
-  days =[];
+  weekday = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat','sun'];
+
+  days = ['mon', 'tue'];
+  time: any;
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
@@ -25,14 +26,39 @@ export class NotificationsComponent implements OnInit {
 
   }
 
-  selectDay(day) {
-    if (day.includes(day)) {
-      this.days.push(day);
-      this.bgColor= "";
+  isActive(day) {
+    if (this.days.includes(day)) {
+      // this.days.push(day);
+      return true;
+    } else {
+      // const index = this.days.indexOf(day);
+      // if (index > -1) {
+      //   this.days.splice(index, 1);
+      // }
+      // console.log(this.days);
+      return false;
     }
   }
 
-  update() {}
+  selectDay(day) {
+    console.log(day);
+    console.log(this.days);
+    if (this.days.includes(day)) {
+      const index = this.days.indexOf(day);
+      if (index > -1) {
+        this.days.splice(index, 1);
+      }
+      console.log(this.days);
+    } else {
+      this.days.push(day);
+    }
+    console.log(this.days);
+  }
+
+  update() {
+    var data= {days: this.days, time: this.time}
+    console.log(data);
+  }
 
   cancel() {}
 

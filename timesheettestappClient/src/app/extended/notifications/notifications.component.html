@@ -24,16 +24,17 @@
             <div fxFlex=37 class="time-container">
               <!-- <div class="time-container mat-form-field" > -->
                 <!-- <mat-label class="lable-inline">Time Picker</mat-label> -->
-                <ngx-timepicker-field #timePicker name='timepicker'>
+                <ngx-timepicker-field #timePicker [(ngModel)]="time" name='timepicker'>
                 </ngx-timepicker-field>
               <!-- </div> -->
             </div>
             <div fxFlex>on the selected days</div>
         </div>
+        <!-- <div>{{time}}</div> -->
 
         <div class="notify" fxFlex>
           <ng-container *ngFor="let day of weekday">
-            <div fxFlex (click)="selectDay(day)"  class="notifyday">{{day}}</div>
+            <div fxFlex class="cursor" (click)="selectDay(day)" [class.selected]="isActive(day)"  class="notifyday">{{day | titlecase}}</div>
           </ng-container>
           <!-- <div fxFlex (click)="select(d)" [ngStyle]="{'background-color': bgColor}" class="notifyday">Mon</div>
           <div fxFlex class="notifyday">Tue</div>

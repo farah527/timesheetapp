@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder } from '@angular/forms';
 import * as Moment from 'moment';
 import { extendMoment } from 'moment-range';
+// import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 const moment = extendMoment(Moment);
 @Component({
@@ -127,8 +128,13 @@ export class TimesheetDetailsComponent implements OnInit {
     console.log(this.customerProjects);
   }
 
+  dateChanged(event) {
+    console.log('change');
+    this.timesheet('current');
+  }
 
   timesheet(state) {
+    console.log('state', state);
     this.dateList = [];
     var date = new Date(this.timesheetDate);
     var day = date.getDate();
